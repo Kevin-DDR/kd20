@@ -1,0 +1,38 @@
+{
+  "name": "kd20",
+  "version": "1.0.0",
+  "description": "A simple dice roller that can handle complex die sequences",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kevin-DDR/kd20.git"
+  },
+  "keywords": [
+    "d20",
+    "kd20",
+    "dice-roller"
+  ],
+  "author": "Kévin DONIN DE ROSIERE",
+  "license": "SEE LICENSE IN README.md",
+  "bugs": {
+    "url": "https://github.com/Kevin-DDR/kd20/issues"
+  },
+  "homepage": "https://github.com/Kevin-DDR/kd20#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.5",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.2"
+  }
+}
