@@ -41,9 +41,17 @@ export const parse = (s: string): ParsedBlock[] => {
   })
   return res
 }
-
+/**
+ * 
+ * @param max The maximum value possible (included)
+ * @returns A value between 0 and max (included)
+ */
 function getRandomInt (max: number) {
   return Math.floor(Math.random() * max)
+}
+
+export const getRandomIntForTests = (max: number) => {
+  return getRandomInt(max)
 }
 
 export const rand = (a: ParsedBlock[]) => {
