@@ -5,7 +5,9 @@ Simple dice roller which can handle complex die sequences.
 
 ## Install
 `npm i kd20`
+
 or
+
 `yarn add kd20`
 
 ## Usage
