@@ -45,7 +45,7 @@ test('Rand a negative value or die correctly and match with total()', () => {
 
 test('Rand a complex string', () => {
   for(let i = 0; i < 1000; i++) {
-    const result = parseAndRand('3d6 + 1d4 - 5 + 2d4 + 1')
-    checkRange(total(result), 2, 26)
+    const result = parseAndRand('3d6 + 1d4 - 5 - 2d4 + 1')
+    checkRange(total(result), -8, 16)
   }
 })

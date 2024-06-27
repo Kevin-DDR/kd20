@@ -10,17 +10,27 @@ or
 
 ## Usage
 ```
-import { parse, rand, total, ParsedBlock, RandomizedBlock } from 'kd20'
+import { parse, rand, total, ParsingError } from 'kd20'
+import type { ParsedBlock, RandomizedBlock } from 'kd20'
+
 
 const stringToParse = '1d4+4 + 2d6 - 1d4'
-const parsedValue = parse(stringToParse)      // Returns an array of Object representing each die and fixed value to randomize
-const randomizedValue = rand(parsedValue)     // Returns an array of Object similar to before, this time with an extra field for each Object containing the randomized value
-const total = total(randomizedValue)          // Returns the total value of the parsed string
+try {
+  const parsedValue = parse(stringToParse)      // Returns an array of Object representing each die and fixed value to randomize
+  const randomizedValue = rand(parsedValue)     // Returns an array of Object similar to before, this time with an extra field for each Object containing the randomized value
+  const total = total(randomizedValue)          // Returns the total value of the parsed string
+} catch (e) {
+  if (e instanceof ParsingError) {
+    // The string to parse isn't valid
+    console.log(e.message)
+  }
+}
+
 ```
 
 ## TODO
-- [ ] Add tests for each method
-- [ ] Throw an exception when string is incorrect
+- [X] Add tests for each method
+- [X] Throw an exception when string is incorrect
 - [ ] Provide a method to run `parse`, `rand` and `total` in one go.
 
 ## License

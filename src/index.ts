@@ -21,6 +21,7 @@ export const parse = (s: string): ParsedBlock[] => {
     cell = cell.replaceAll('(plus)', '+').replaceAll('(minus)', '-')
     if (cell.includes('d')) {
       const tmp = cell.split('d')
+      if(isNaN(parseInt(tmp[0])) || isNaN(parseInt(tmp[1]))) throw new ParsingError(cell)
       const isNegative = tmp[0][0] === '-'
       if (isNegative) {
         tmp[0] = tmp[0].substring(1)
@@ -33,6 +34,7 @@ export const parse = (s: string): ParsedBlock[] => {
         })
       }
     } else {
+      if(isNaN(parseInt(cell))) throw new ParsingError(cell)
       res.push({
         type: 'fixed',
         maxValue: parseInt(cell)
@@ -83,4 +85,11 @@ export const total = (a: RandomizedBlock[]) => {
     res += cell.value
   })
   return res
+}
+
+export class ParsingError extends Error {
+  constructor(string: string) {
+    super(`Invalid die sequence: "${string}" is not a die type (ex: 3d6) nor a fixed value (ex: -2)`)
+    this.name = "ParsingError"
+  }
 }

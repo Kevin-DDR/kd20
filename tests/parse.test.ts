@@ -1,4 +1,4 @@
-import { parse } from "../src/index";
+import { parse, ParsingError } from "../src/index";
 
 test('Parse a single die correctly', () => {
   const result = parse('1d6')
@@ -19,15 +19,22 @@ test('Parse a negative value or die correctly', () => {
 })
 
 test('Parse a complex string', () => {
-  const result = parse('3d6 + 1d4 - 5 + 2d4 + 1')
+  const result = parse('3d6 + 1d4 - 5 - 2d4 + 1')
   expect(result).toEqual([
     { type: 'die', maxValue: 6, negative: false },
     { type: 'die', maxValue: 6, negative: false },
     { type: 'die', maxValue: 6, negative: false },
     { type: 'die', maxValue: 4, negative: false },
     { type: 'fixed', maxValue: -5 },
-    { type: 'die', maxValue: 4, negative: false },
-    { type: 'die', maxValue: 4, negative: false },
+    { type: 'die', maxValue: 4, negative: true },
+    { type: 'die', maxValue: 4, negative: true },
     { type: 'fixed', maxValue: 1 }
   ])
 })
+
+test('Throw an exception for an invalid string', () => {
+  expect(() => parse('toto + 1d4')).toThrow(ParsingError)
+  expect(() => parse('+f')).toThrow(ParsingError)
+  expect(() => parse('3dz')).toThrow(ParsingError)
+})
+
