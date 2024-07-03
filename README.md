@@ -11,7 +11,7 @@ or
 `yarn add kd20`
 
 ## Usage
-```
+```ts
 import { parse, rand, total, ParsingError } from 'kd20'
 import type { ParsedBlock, RandomizedBlock } from 'kd20'
 
