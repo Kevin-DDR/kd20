@@ -1,6 +1,6 @@
 {
   "name": "kd20",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A simple dice roller that can handle complex die sequences",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

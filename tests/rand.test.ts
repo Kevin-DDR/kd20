@@ -1,4 +1,4 @@
-import { parse, getRandomIntForTests,rand, total } from "../src/index";
+import { parse, getRandomIntForTests,rand, total, minPossibleValue, maxPossibleValue } from "../src/index";
 
 const checkRange = (value: number, min: number, max: number) => {
   expect(value).toBeGreaterThanOrEqual(min)
@@ -48,4 +48,14 @@ test('Rand a complex string', () => {
     const result = parseAndRand('3d6 + 1d4 - 5 - 2d4 + 1')
     checkRange(total(result), -8, 16)
   }
+})
+
+test('maxPossibleValue and minPossibleValue should be accurate', () => {
+  let parsedArray = parse('3d6 + 1d4 - 5 - 2d4 + 1')
+  expect(minPossibleValue(parsedArray)).toBe(-8)
+  expect(maxPossibleValue(parsedArray)).toBe(16)
+
+  parsedArray = parse('')
+  expect(minPossibleValue(parsedArray)).toBe(0)
+  expect(maxPossibleValue(parsedArray)).toBe(0)
 })
