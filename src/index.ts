@@ -87,6 +87,30 @@ export const total = (a: RandomizedBlock[]) => {
   return res
 }
 
+export const maxPossibleValue = (a: ParsedBlock[]) => {
+  let res = 0
+  a.forEach(cell => {
+    if(cell.type === 'die'){
+      res += !cell.negative ? cell.maxValue : -1 
+    }else if(cell.type ==='fixed') {
+      res += cell.maxValue
+    }
+  })
+  return res
+}
+
+export const minPossibleValue = (a: ParsedBlock[]) => {
+  let res = 0
+  a.forEach(cell => {
+    if(cell.type === 'die'){
+      res += cell.negative ? -cell.maxValue : 1 
+    }else if(cell.type ==='fixed') {
+      res += cell.maxValue
+    }
+  })
+  return res
+}
+
 export class ParsingError extends Error {
   constructor(string: string) {
     super(`Invalid die sequence: "${string}" is not a die type (ex: 3d6) nor a fixed value (ex: -2)`)
