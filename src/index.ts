@@ -21,7 +21,7 @@ export const parse = (s: string): ParsedBlock[] => {
     cell = cell.replaceAll('(plus)', '+').replaceAll('(minus)', '-')
     if (cell.includes('d')) {
       const tmp = cell.split('d')
-      if(isNaN(parseInt(tmp[0])) || isNaN(parseInt(tmp[1]))) throw new ParsingError(cell)
+      if(isNaN(+tmp[0]) || isNaN(+tmp[1])) throw new ParsingError(cell)
       const isNegative = tmp[0][0] === '-'
       if (isNegative) {
         tmp[0] = tmp[0].substring(1)
@@ -83,6 +83,30 @@ export const total = (a: RandomizedBlock[]) => {
   let res = 0
   a.forEach(cell => {
     res += cell.value
+  })
+  return res
+}
+
+export const maxPossibleValue = (a: ParsedBlock[]) => {
+  let res = 0
+  a.forEach(cell => {
+    if(cell.type === 'die'){
+      res += !cell.negative ? cell.maxValue : -1 
+    }else if(cell.type ==='fixed') {
+      res += cell.maxValue
+    }
+  })
+  return res
+}
+
+export const minPossibleValue = (a: ParsedBlock[]) => {
+  let res = 0
+  a.forEach(cell => {
+    if(cell.type === 'die'){
+      res += cell.negative ? -cell.maxValue : 1 
+    }else if(cell.type ==='fixed') {
+      res += cell.maxValue
+    }
   })
   return res
 }
