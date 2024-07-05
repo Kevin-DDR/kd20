@@ -1,8 +1,9 @@
 # kd20
 Simple dice roller which can handle complex die sequences.
 
-[npm package](https://www.npmjs.com/package/kd20?activeTab=readme)
-[demo](https://www.kddr.fr/app/d20)
+[NPM package](https://www.npmjs.com/package/kd20?activeTab=readme)
+
+[Demo](https://www.kddr.fr/app/d20)
 
 ## Install
 `npm i kd20`
