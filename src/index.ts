@@ -1,16 +1,21 @@
 // 2d8 - 1d6 +4 +2 -1
-export interface ParsedBlock {
-  type: 'fixed' | 'die'
-  maxValue: number
-  negative?: boolean
+interface DieBlock {
+  type: 'die'
+  negative: boolean
 }
 
-export interface RandomizedBlock {
-  type: 'fixed' | 'die'
-  maxValue: number
-  negative?: boolean
-  value: number
+interface FixedBlock {
+  type: 'fixed'
 }
+
+export type ParsedBlock = {
+  maxValue: number
+} & (DieBlock | FixedBlock)
+
+export type RandomizedBlock = {
+  maxValue: number
+  value: number
+} & (DieBlock | FixedBlock)
 
 export const parse = (s: string): ParsedBlock[] => {
   const string = s.replaceAll(' ', '').replaceAll('+', '+(plus)').replaceAll('-', '+(minus)')
