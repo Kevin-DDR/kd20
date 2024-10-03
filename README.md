@@ -14,7 +14,7 @@ or
 
 ## Simple usage
 ```ts
-import { roll } from 'kd20'
+import { roll, ParsingError } from 'kd20'
 
 const stringToParse = '1d4+4 + 2d6 - 1d4'
 try {
