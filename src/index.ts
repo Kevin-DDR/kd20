@@ -92,6 +92,12 @@ export const total = (a: RandomizedBlock[]) => {
   return res
 }
 
+export const roll = (s: string) => {
+  const parsedValue = parse(s)      
+  const randomizedValue = rand(parsedValue)
+  return total(randomizedValue)     
+}
+
 export const maxPossibleValue = (a: ParsedBlock[]) => {
   let res = 0
   a.forEach(cell => {
