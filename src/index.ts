@@ -25,16 +25,23 @@ export const parse = (s: string): ParsedBlock[] => {
     cell = cell.toLowerCase()
     cell = cell.replaceAll('(plus)', '+').replaceAll('(minus)', '-')
     if (cell.includes('d')) {
-      const tmp = cell.split('d')
-      if(isNaN(+tmp[0]) || isNaN(+tmp[1])) throw new ParsingError(cell)
-      const isNegative = tmp[0][0] === '-'
+      if(cell[0] === 'd') cell = '1' + cell
+      const splitString = cell.split('d')
+      if(
+        isNaN(+splitString[0]) ||
+        isNaN(+splitString[1]) ||
+        splitString.length !== 2 ||
+        splitString[0] === '' ||
+        splitString[1] === ''
+      ) throw new ParsingError(cell)
+      const isNegative = splitString[0][0] === '-'
       if (isNegative) {
-        tmp[0] = tmp[0].substring(1)
+        splitString[0] = splitString[0].substring(1)
       }
-      for (let i = 0; i < parseInt(tmp[0]); i++) {
+      for (let i = 0; i < parseInt(splitString[0]); i++) {
         res.push({
           type: 'die',
-          maxValue: parseInt(tmp[1]),
+          maxValue: parseInt(splitString[1]),
           negative: isNegative
         })
       }

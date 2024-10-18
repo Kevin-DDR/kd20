@@ -18,6 +18,11 @@ test('Parse a negative value or die correctly', () => {
   expect(result2).toEqual([{ type: 'fixed', maxValue: -3 }])
 })
 
+test('Parse d20 (implicit 1d20)', () => {
+  const result = parse('d20')
+  expect(result).toEqual([{ type: 'die', maxValue: 20, negative: false }])
+})
+
 test('Parse a complex string', () => {
   const result = parse('3d6 + 1d4 - 5 - 2d4 + 1')
   expect(result).toEqual([
@@ -37,5 +42,11 @@ test('Throw an exception for an invalid string', () => {
   expect(() => parse('+f')).toThrow(ParsingError)
   expect(() => parse('3dz')).toThrow(ParsingError)
   expect(() => parse('4d4sss')).toThrow(ParsingError)
+  expect(() => parse('dd20')).toThrow(ParsingError)
+  expect(() => parse('2dd20')).toThrow(ParsingError)
+  expect(() => parse('2d')).toThrow(ParsingError)
+  expect(() => parse('2dd')).toThrow(ParsingError)
+  expect(() => parse('2d   2d')).toThrow(ParsingError)
+  expect(() => parse('d1d4')).toThrow(ParsingError)
 })
 
