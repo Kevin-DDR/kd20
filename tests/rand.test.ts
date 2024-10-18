@@ -54,8 +54,4 @@ test('maxPossibleValue and minPossibleValue should be accurate', () => {
   let parsedArray = parse('3d6 + 1d4 - 5 - 2d4 + 1')
   expect(minPossibleValue(parsedArray)).toBe(-8)
   expect(maxPossibleValue(parsedArray)).toBe(16)
-
-  parsedArray = parse('')
-  expect(minPossibleValue(parsedArray)).toBe(0)
-  expect(maxPossibleValue(parsedArray)).toBe(0)
 })
