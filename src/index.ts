@@ -19,6 +19,7 @@ export type RandomizedBlock = {
 
 export const parse = (s: string): ParsedBlock[] => {
   const string = s.replaceAll(' ', '').replaceAll('+', '+(plus)').replaceAll('-', '+(minus)')
+  if(string.length === 0) throw new ParsingError(string)
   const splitS = string.split('+')
   const res: ParsedBlock[] = []
   splitS.filter(cell => cell !== '').forEach(cell => {

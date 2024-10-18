@@ -38,6 +38,7 @@ test('Parse a complex string', () => {
 })
 
 test('Throw an exception for an invalid string', () => {
+  expect(() => parse('')).toThrow(ParsingError)
   expect(() => parse('toto + 1d4')).toThrow(ParsingError)
   expect(() => parse('+f')).toThrow(ParsingError)
   expect(() => parse('3dz')).toThrow(ParsingError)
